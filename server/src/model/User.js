@@ -1,14 +1,19 @@
 /* eslint no-return-await:0 */
+const query = require('../lib/mysql');
+
 class UserModel {
   async findUserProfile() {
-    // Similar: return await query('select * from user where uid = ?', uid);
-    return await {
-      name: '淘小宝',
-      department: '技术部',
-      avatar:
-        'https://img.alicdn.com/tfs/TB1L6tBXQyWBuNjy0FpXXassXXa-80-80.png',
-      userid: 10001,
-    };
+    const data = await query('SELECT * FROM user');
+    console.log(data);
+    // return await mysql.query('select * from user');
+  }
+
+  async hasName(name) {
+    return await query(`SELECT * FROM user where name = ${name}`);
+  }
+
+  async register(data) {
+    return await query('INSERT INTO user SET ?', { name: data.name, email: data.email, passwd: data.passwd });
   }
 }
 

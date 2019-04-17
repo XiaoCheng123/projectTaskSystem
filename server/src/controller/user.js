@@ -13,36 +13,43 @@ class UserController {
       ctx.body = {
         status: 200,
         statusText: 'ok',
-        currentAuthority: 'admin',
       };
     } else if (username === 'user' && password === 'user') {
       ctx.body = {
         status: 200,
         statusText: 'ok',
-        currentAuthority: 'user',
       };
     } else {
       ctx.body = {
         status: 401,
         statusText: 'unauthorized',
-        currentAuthority: 'guest',
       };
     }
   }
 
   async register(ctx) {
-    ctx.body = {
-      status: 200,
-      statusText: 'ok',
-      currentAuthority: 'user',
-    };
+    const data = ctx.request.body;
+
+    const res = await userService.hasName(data.name);
+
+    if (res.length !== 0) {
+      ctx.body = {
+        status: 203,
+        statusText: 'ok',
+      };
+    } else {
+      await userService.register(data);
+      ctx.body = {
+        status: 200,
+        statusText: 'ok',
+      };
+    }
   }
 
   async logout(ctx) {
     ctx.body = {
       status: 200,
       statusText: 'ok',
-      currentAuthority: 'guest',
     };
   }
 }

@@ -8,6 +8,8 @@ import {
   FormError as IceFormError,
 } from '@icedesign/form-binder';
 import IceIcon from '@icedesign/foundation-symbol';
+import axios from 'axios';
+import host from '../../../public/config';
 
 @withRouter
 class UserLogin extends Component {
@@ -42,6 +44,11 @@ class UserLogin extends Component {
         return;
       }
       console.log(values);
+      axios.get('http://localhost:3000/api/profile').then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+      });
       Message.success('登录成功');
       this.props.history.push('/');
     });

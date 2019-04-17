@@ -8,6 +8,8 @@ import {
   FormError as IceFormError,
 } from '@icedesign/form-binder';
 import IceIcon from '@icedesign/foundation-symbol';
+import axios from 'axios';
+import host from '../../../public/config';
 
 @withRouter
 class UserRegister extends Component {
@@ -64,8 +66,17 @@ class UserRegister extends Component {
         return;
       }
       console.log(values);
-      Message.success('注册成功');
-      this.props.history.push('/user/login');
+      axios.post(`${host}/api/register`, values).then((res) => {
+        if (res.data.status === 200) {
+          Message.success('注册成功');
+          this.props.history.push('/user/login');
+        } else if (res.data.status === 203) {
+          Message.error('用户已经存在');
+        }
+        console.log(res.data);
+      }).catch((err) => {
+        console.log(err);
+      });
     });
   };
 
