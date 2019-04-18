@@ -44,13 +44,19 @@ class UserLogin extends Component {
         return;
       }
       console.log(values);
-      axios.get('http://localhost:3000/api/profile').then((res) => {
-        console.log(res);
+      axios.post(`${host}/api/login`, values).then((res) => {
+        if (res.data.status === 200) {
+          Message.success('登录成功');
+          this.props.history.push('/');
+        } else if (res.data.status === 203) {
+          Message.error('用户名错误');
+        } else if (res.data.status === 204) {
+          Message.error('密码错误');
+        }
+        console.log(res.data);
       }).catch((err) => {
         console.log(err);
       });
-      Message.success('登录成功');
-      this.props.history.push('/');
     });
   };
 

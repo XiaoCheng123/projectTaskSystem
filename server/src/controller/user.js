@@ -7,22 +7,26 @@ class UserController {
   }
 
   async login(ctx) {
-    const { username, password } = ctx.query;
+    const data = ctx.request.body;
+    console.log(data);
 
-    if (username === 'admin' && password === 'admin') {
+    const res = await userService.login(data.username);
+    console.log(res);
+
+    if (res.length === 0) {
       ctx.body = {
-        status: 200,
+        status: 203, // 找不到用户
         statusText: 'ok',
       };
-    } else if (username === 'user' && password === 'user') {
+    } else if (res[0].passwd !== data.password) {
       ctx.body = {
-        status: 200,
+        status: 204, // 密码错误
         statusText: 'ok',
       };
     } else {
       ctx.body = {
-        status: 401,
-        statusText: 'unauthorized',
+        status: 200,
+        statusText: 'ok',
       };
     }
   }
