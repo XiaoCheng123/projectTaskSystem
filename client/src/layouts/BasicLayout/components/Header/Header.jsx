@@ -12,6 +12,8 @@ export default class Header extends Component {
   render() {
     const { location = {} } = this.props;
     const { pathname } = location;
+    console.log(this.props);
+
     return (
       <div className="header-container">
         <div className="header-content">
@@ -121,7 +123,7 @@ export default class Header extends Component {
                   />
                   <div className="user-profile">
                     <span className="user-name" style={{ fontSize: '13px' }}>
-                      淘小宝
+                      {this.props.userName}
                     </span>
                     <br />
                     <span className="user-department">技术部</span>

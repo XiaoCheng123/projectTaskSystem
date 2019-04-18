@@ -2,16 +2,27 @@ const userService = require('../service/user');
 
 class UserController {
   async profile(ctx) {
-    const res = await userService.profile();
-    ctx.body = res.data;
+    if (ctx.session.user === undefined || ctx.session.user === '') {
+      ctx.body = {
+        status: 302, // 未登录
+        statusText: 'ok',
+      };
+    } else {
+      const res = await userService.profile(ctx.session.user);
+      ctx.body = {
+        status: 200, // 已经登录
+        statusText: 'ok',
+        data: res.data[0],
+      };
+    }
   }
 
   async login(ctx) {
     const data = ctx.request.body;
-    console.log(data);
 
     const res = await userService.login(data.username);
-    console.log(res);
+
+    ctx.cookies.set('age', 23);
 
     if (res.length === 0) {
       ctx.body = {
@@ -24,6 +35,7 @@ class UserController {
         statusText: 'ok',
       };
     } else {
+      ctx.session.user = data.username;
       ctx.body = {
         status: 200,
         statusText: 'ok',
