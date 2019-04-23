@@ -3,7 +3,7 @@
 // 变量名 routerConfig 为 iceworks 检测关键字，请不要修改名称
 import UserLogin from './pages/UserLogin';
 import UserRegister from './pages/UserRegister';
-import Dashboard from './pages/Dashboard';
+
 import Document from './pages/Document';
 import Services from './pages/Services';
 import Member from './pages/Member';
@@ -20,10 +20,6 @@ const routerConfig = [
   {
     path: '/user/register',
     component: UserRegister,
-  },
-  {
-    path: '/dashboard',
-    component: Dashboard,
   },
   {
     path: '/document',

@@ -26,11 +26,6 @@ const headerMenuConfig = [
 
 const asideMenuConfig = [
   {
-    name: '概览',
-    path: '/dashboard',
-    icon: 'home2',
-  },
-  {
     name: '项目',
     path: '/services',
     icon: 'cascades',

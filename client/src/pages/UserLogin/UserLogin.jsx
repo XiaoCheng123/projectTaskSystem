@@ -47,7 +47,7 @@ class UserLogin extends Component {
       axios.post(`${host}/api/login`, values).then((res) => {
         if (res.data.status === 200) {
           Message.success('登录成功');
-          this.props.history.push('/');
+          this.props.history.push('/services');
         } else if (res.data.status === 203) {
           Message.error('用户名错误');
         } else if (res.data.status === 204) {
