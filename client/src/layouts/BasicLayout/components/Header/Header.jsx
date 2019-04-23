@@ -1,14 +1,35 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Balloon, Icon, Nav } from '@alifd/next';
+import axios from 'axios';
+import { Balloon, Icon, Nav, Message } from '@alifd/next';
 import FoundationSymbol from '@icedesign/foundation-symbol';
 import IceImg from '@icedesign/img';
 import { headerMenuConfig } from '../../../../menuConfig';
 import Logo from '../Logo';
 import './Header.scss';
+import host from '../../../../../public/config';
 
 @withRouter
 export default class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.loginOut = this.loginOut.bind(this);
+  }
+
+  loginOut() {
+    axios.get(`${host}/api/logout`).then((res) => {
+      if (res.data.status === 200) {
+        Message.success('退出成功');
+        this.props.history.push('/user/login');
+      } else {
+        Message.error('退出失败，请重试');
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
   render() {
     const { location = {} } = this.props;
     const { pathname } = location;
@@ -146,10 +167,10 @@ export default class Header extends Component {
                   </Link>
                 </li>
                 <li className="user-profile-menu-item">
-                  <Link to="/user/login">
+                  <div onClick={this.loginOut}>
                     <FoundationSymbol type="compass" size="small" />
                     退出
-                  </Link>
+                  </div>
                 </li>
               </ul>
             </Balloon>

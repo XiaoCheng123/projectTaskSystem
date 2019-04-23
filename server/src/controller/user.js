@@ -22,8 +22,6 @@ class UserController {
 
     const res = await userService.login(data.username);
 
-    ctx.cookies.set('age', 23);
-
     if (res.length === 0) {
       ctx.body = {
         status: 203, // 找不到用户
@@ -63,6 +61,8 @@ class UserController {
   }
 
   async logout(ctx) {
+    ctx.session.user = '';
+
     ctx.body = {
       status: 200,
       statusText: 'ok',
