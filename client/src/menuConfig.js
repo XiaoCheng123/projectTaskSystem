@@ -31,12 +31,7 @@ const asideMenuConfig = [
     icon: 'cascades',
   },
   {
-    name: '文档',
-    path: '/document',
-    icon: 'copy',
-  },
-  {
-    name: '状态',
+    name: '消息提醒',
     path: '/activities',
     icon: 'activity',
   },
@@ -44,6 +39,11 @@ const asideMenuConfig = [
     name: '成员',
     path: '/member',
     icon: 'person',
+  },
+  {
+    name: '任务',
+    path: '/task',
+    icon: 'task',
   },
   {
     name: '设置',

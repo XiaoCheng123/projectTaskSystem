@@ -12,13 +12,11 @@ export default class ServiceHead extends Component {
     return (
       <div style={styles.head}>
         <Button
+          type="primary"
           style={{ marginRight: '10px' }}
           onClick={this.handleClick}
         >
-          项目管理
-        </Button>
-        <Button type="primary" onClick={this.handleClick}>
-          授权管理
+          新建项目
         </Button>
       </div>
     );

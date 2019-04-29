@@ -4,12 +4,12 @@
 import UserLogin from './pages/UserLogin';
 import UserRegister from './pages/UserRegister';
 
-import Document from './pages/Document';
 import Services from './pages/Services';
 import Member from './pages/Member';
 import Setting from './pages/Setting';
-import AddDocument from './pages/AddDocument';
+
 import AddMember from './pages/AddMember';
+import Task from './pages/Task';
 import Activities from './pages/Activities';
 
 const routerConfig = [
@@ -20,10 +20,6 @@ const routerConfig = [
   {
     path: '/user/register',
     component: UserRegister,
-  },
-  {
-    path: '/document',
-    component: Document,
   },
   {
     path: '/services',
@@ -38,16 +34,16 @@ const routerConfig = [
     component: Member,
   },
   {
-    path: '/add/document',
-    component: AddDocument,
-  },
-  {
     path: '/add/member',
     component: AddMember,
   },
   {
     path: '/setting',
     component: Setting,
+  },
+  {
+    path: '/task',
+    component: Task,
   },
 ];
 
