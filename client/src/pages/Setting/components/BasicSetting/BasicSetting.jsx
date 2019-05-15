@@ -20,8 +20,8 @@ export default class BasicSetting extends Component {
     super(props);
     this.state = {
       value: {
-        zhName: '飞冰',
-        cName: 'ICE',
+        cnName: '215',
+        zhName: '1197138309@qq.com',
       },
     };
   }
@@ -52,31 +52,31 @@ export default class BasicSetting extends Component {
           >
             <div>
               <div style={styles.formItem}>
-                <div style={styles.formLabel}>英文名：</div>
+                <div style={styles.formLabel}>用户名</div>
                 <IceFormBinder name="cnName">
                   <Input
-                    disabled
                     style={{ width: '400px' }}
                   />
                 </IceFormBinder>
               </div>
               <div style={styles.formItem}>
-                <div style={styles.formLabel}>中文名：</div>
+                <div style={styles.formLabel}>邮箱</div>
                 <IceFormBinder name="zhName">
                   <Input
-                    disabled
                     style={{ width: '400px' }}
                   />
                 </IceFormBinder>
               </div>
               <div style={styles.formItem}>
-                <div style={styles.formLabel}>项目简介：</div>
-                <IceFormBinder name="description">
-                  <Input.TextArea style={{ width: '400px' }} />
+                <div style={styles.formLabel}>旧密码</div>
+                <IceFormBinder name="password">
+                  <Input
+                    style={{ width: '400px' }}
+                  />
                 </IceFormBinder>
               </div>
               <div style={styles.formItem}>
-                <div style={styles.formLabel}>仓库地址：</div>
+                <div style={styles.formLabel}>新密码</div>
                 <IceFormBinder
                   required
                   triggerType="onBlur"
@@ -93,7 +93,7 @@ export default class BasicSetting extends Component {
                 </div>
               </div>
               <div style={styles.formItem}>
-                <div style={styles.formLabel}>反馈邮箱：</div>
+                <div style={styles.formLabel}>再次输入新密码</div>
                 <IceFormBinder
                   required
                   triggerType="onBlur"

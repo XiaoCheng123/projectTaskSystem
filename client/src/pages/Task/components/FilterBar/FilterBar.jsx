@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import IceContainer from '@icedesign/container';
-import { Select, DatePicker } from '@alifd/next';
+import { Select, Button } from '@alifd/next';
 
 export default class FilterBar extends Component {
   static displayName = 'FilterBar';
@@ -37,11 +37,17 @@ export default class FilterBar extends Component {
           onChange={this.handleSelectChange}
           defaultValue="taobao"
         >
-          <Select.Option value="taobao">淘宝技术部</Select.Option>
-          <Select.Option value="aliyun">阿里云事业部</Select.Option>
-          <Select.Option value="dingding">钉钉事业部</Select.Option>
+          <Select.Option value="taobao">项目名称</Select.Option>
+          <Select.Option value="aliyun">项目名称</Select.Option>
+          <Select.Option value="dingding">项目名称</Select.Option>
         </Select>
-        <DatePicker size="large" onChange={this.handleDatePickerChange} />
+        <Button
+          type="primary"
+          style={{ marginRight: '10px' }}
+          onClick={this.handleClick}
+        >
+          新建任务
+        </Button>
       </IceContainer>
     );
   }

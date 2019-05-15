@@ -17,13 +17,13 @@ class Container extends Component {
     super(props);
     this.state = {
       listSource: [
-        'Sucking at something is the first step towards being sorta good at',
-        'People make mistakes. It’s a part of growing up Homies help homies. Always',
-        'Sometimes life is scary and dark',
-        'Dont you always call sweatpants give up on life pants, Jake?',
+        '努力写论文',
+        '认真锻炼',
+        '成功毕业',
+        '成为CEO',
       ],
       listTarget: [
-        "That's it! The answer was so simple, I was too smart to see it!",
+        '答辩通过',
       ],
     };
   }
@@ -59,13 +59,13 @@ class Container extends Component {
     return (
       <div style={styles.listContainer}>
         <div style={styles.list}>
-          <div style={styles.listTitle}>List Source</div>
+          <div style={styles.listTitle}>未完成任务</div>
           <div style={{ minHeight: '15rem', padding: '15px', background: '#fff' }}>
             {this.renderSource()}
           </div>
         </div>
         <div style={styles.list}>
-          <div style={styles.listTitle}>List Target</div>
+          <div style={styles.listTitle}>已完成任务</div>
           <TargetBox>{this.renderTarget()}</TargetBox>
         </div>
       </div>

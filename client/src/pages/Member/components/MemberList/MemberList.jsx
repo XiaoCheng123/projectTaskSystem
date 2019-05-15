@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import IceContainer from '@icedesign/container';
-import { Table, Dialog } from '@alifd/next';
+import { Table, Dialog, Select } from '@alifd/next';
 import { withRouter, Link } from 'react-router-dom';
 import ContainerTitle from '../../../../components/ContainerTitle';
 
@@ -9,33 +9,22 @@ const mockData = [
     id: 1,
     avatar:
       'https://img.alicdn.com/tfs/TB18g0ydNTpK1RjSZR0XXbEwXXa-500-500.jpg',
-    name: '淘小宝',
-    email: 'ice-admin@alibaba-inc.com',
-    role: 'owner',
+    name: '123',
+    email: '1197138309@qq.com',
   },
   {
     id: 2,
     avatar:
       'https://img.alicdn.com/tfs/TB18g0ydNTpK1RjSZR0XXbEwXXa-500-500.jpg',
-    name: '淘小宝',
-    email: 'ice-admin@alibaba-inc.com',
-    role: 'member',
+    name: '小成1',
+    email: '1197138309@qq.com',
   },
   {
     id: 3,
     avatar:
       'https://img.alicdn.com/tfs/TB18g0ydNTpK1RjSZR0XXbEwXXa-500-500.jpg',
-    name: '淘小宝',
-    email: 'ice-admin@alibaba-inc.com',
-    role: 'owner',
-  },
-  {
-    id: 4,
-    avatar:
-      'https://img.alicdn.com/tfs/TB18g0ydNTpK1RjSZR0XXbEwXXa-500-500.jpg',
-    name: '淘小宝',
-    email: 'ice-admin@alibaba-inc.com',
-    role: 'member',
+    name: '小成2',
+    email: '1197138309@qq.com',
   },
 ];
 
@@ -92,6 +81,15 @@ export default class MemberList extends Component {
     const { data } = this.state;
     return (
       <IceContainer style={styles.container}>
+        <Select
+          size="large"
+          style={{ position: 'absolute', top: '93px', right: '140px' }}
+          defaultValue="taobao"
+        >
+          <Select.Option value="taobao">项目名称</Select.Option>
+          <Select.Option value="aliyun">项目名称</Select.Option>
+          <Select.Option value="dingding">项目名称</Select.Option>
+        </Select>
         <ContainerTitle
           title="项目成员"
           buttonText="添加成员"
