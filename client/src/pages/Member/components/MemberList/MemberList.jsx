@@ -99,7 +99,6 @@ export default class MemberList extends Component {
         <Table dataSource={data} hasHeader={false} hasBorder={false}>
           <Table.Column dataIndex="name" cell={this.renderProfile} />
           <Table.Column dataIndex="email" />
-          <Table.Column dataIndex="role" />
           <Table.Column dataIndex="id" cell={this.renderOper} />
         </Table>
       </IceContainer>

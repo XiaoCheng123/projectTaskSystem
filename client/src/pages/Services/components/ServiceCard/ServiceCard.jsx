@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import { Grid } from '@alifd/next';
 import IceContainer from '@icedesign/container';
-// import { Link } from 'react-router-dom';
+import axios from 'axios';
+import host from '../../../../../public/config';
 
 const { Row, Col } = Grid;
-
-// MOCK 数据，实际业务按需进行替换
-const getData = () => {
-  return Array.from({ length: 3 }).map(() => {
-    return {
-      name: '项目名称',
-      desc: '这里是一段相关的项目简介，介绍项目的功能、特点',
-    };
-  });
-};
 
 export default class ServiceCard extends Component {
   static displayName = 'ServiceCard';
@@ -24,20 +15,35 @@ export default class ServiceCard extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      projectData: [],
+    };
   }
 
+  componentWillMount = () => {
+    this.getData();
+  }
+
+  getData = () => {
+    axios.get(`${host}/api/projectInfo`).then((res) => {
+      this.setState({
+        projectData: res.data.data,
+      });
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
+
   render() {
-    const mockData = getData();
     return (
       <Row wrap gutter="20">
-        {mockData.map((item, index) => {
+        {this.state.projectData.map((item, index) => {
           return (
             <Col l="8" key={index}>
               <IceContainer style={styles.container}>
                 <div style={styles.body}>
                   <h5 style={styles.name}>{item.name}</h5>
-                  <p style={styles.desc}>{item.desc}</p>
+                  <p style={styles.description}>{item.description}</p>
                 </div>
               </IceContainer>
             </Col>
@@ -66,7 +72,7 @@ const styles = {
     fontSize: '16px',
     color: '#0d1a26',
   },
-  desc: {
+  description: {
     fontSize: '14px',
     color: '#697b8c',
     margin: '12px 0',

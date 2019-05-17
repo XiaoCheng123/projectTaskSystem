@@ -4,7 +4,7 @@ const pool = mysql.createPool({
   host: '127.0.0.1', // 数据库地址
   user: 'root', // 数据库用户
   password: 'root', // 数据库密码
-  database: 'project', // 选中数据库
+  database: 'myproject', // 选中数据库
 });
 
 const query = function (sql, values) {

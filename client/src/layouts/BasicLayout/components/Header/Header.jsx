@@ -33,7 +33,6 @@ export default class Header extends Component {
   render() {
     const { location = {} } = this.props;
     const { pathname } = location;
-    console.log(this.props);
 
     return (
       <div className="header-container">
@@ -146,8 +145,6 @@ export default class Header extends Component {
                     <span className="user-name" style={{ fontSize: '13px' }}>
                       {this.props.userName}
                     </span>
-                    <br />
-                    <span className="user-department">技术部</span>
                   </div>
                   <Icon
                     type="arrow-down"

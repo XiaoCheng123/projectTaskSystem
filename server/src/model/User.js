@@ -9,11 +9,11 @@ class UserModel {
   }
 
   async login(name) {
-    return await query(`SELECT * FROM user where name = ${name}`);
+    return await query(`SELECT * FROM user where name = '${name}'`);
   }
 
   async hasName(name) {
-    return await query(`SELECT * FROM user where name = ${name}`);
+    return await query(`SELECT * FROM user where name = '${name}'`);
   }
 
   async register(data) {
