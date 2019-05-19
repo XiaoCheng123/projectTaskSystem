@@ -68,6 +68,14 @@ class UserController {
       statusText: 'ok',
     };
   }
+
+  async getUser(ctx) {
+    const res = await userService.getUser();
+    ctx.body = {
+      status: 200,
+      data: res,
+    };
+  }
 }
 
 module.exports = new UserController();

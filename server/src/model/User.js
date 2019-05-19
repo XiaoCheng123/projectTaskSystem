@@ -3,8 +3,7 @@ const query = require('../lib/mysql');
 
 class UserModel {
   async findUserProfile() {
-    const data = await query('SELECT * FROM user');
-    console.log(data);
+    return await query('SELECT * FROM user');
     // return await mysql.query('select * from user');
   }
 
@@ -18,6 +17,10 @@ class UserModel {
 
   async register(data) {
     return await query('INSERT INTO user SET ?', { name: data.name, email: data.email, passwd: data.passwd });
+  }
+
+  async getUserById(id) {
+    return await query(`SELECT * FROM user where id = '${id}'`);
   }
 }
 

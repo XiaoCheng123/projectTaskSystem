@@ -27,7 +27,7 @@ export default class ServiceCard extends Component {
   getData = () => {
     axios.get(`${host}/api/projectInfo`).then((res) => {
       this.setState({
-        projectData: res.data.data,
+        projectData: res.data.data ? res.data.data : [],
       });
     }).catch((err) => {
       console.log(err);

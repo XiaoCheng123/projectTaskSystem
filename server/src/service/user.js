@@ -1,6 +1,11 @@
 const UserModel = require('../model/User');
 
 class UserService {
+  async getUser() {
+    const data = await UserModel.findUserProfile();
+    return data;
+  }
+
   async profile(name) {
     const data = await UserModel.hasName(name);
     return { data };
