@@ -23,15 +23,13 @@ class ProjectService {
 
   async addPerson(data) {
     const user = await UserModel.getUserById(data.selectUser);
-    if (user[0].projectIds !== null && !user[0].projectIds.split(',').includes(`${data.projectValue}`)) {
+    if (user[0].projectIds && !user[0].projectIds.split(',').includes(`${data.projectValue}`)) {
+      console.log('addPerson1');
       const res = await ProjectModel.addPerson2(data, user);
       return res;
-    } else if (user[0].projectIds === null) {
-      const res = await ProjectModel.addPerson1(data);
-      return res;
     }
-    console.log('false');
-    return false;
+    const res = await ProjectModel.addPerson1(data);
+    return res;
   }
 
   async deleteMerber(data) {

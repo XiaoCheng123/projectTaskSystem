@@ -30,11 +30,12 @@ class ProjectModel {
 
   async deleteMerber(data) {
     console.log(data.user);
-    let array = data.user.projectIds.split(',');
-    array = array.splice(array.findIndex((value) => {
-      return value === data.projectId;
+    const array = data.user.projectIds.split(',');
+    array.splice(array.findIndex((value) => {
+      return value === (`${data.projectId}`);
     }), 1);
-    const string = array ? 'null' : array.join(',');
+    const string = array.join(',');
+    console.log(string);
     const res = await query(`UPDATE user SET projectIds = '${string}' WHERE id = '${data.user.id}'`);
     return res;
   }

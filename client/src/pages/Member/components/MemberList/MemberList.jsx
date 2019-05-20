@@ -109,17 +109,18 @@ export default class MemberList extends Component {
   handleDelete = (index) => {
     const value = {
       projectId: this.state.projectValue,
-      user: this.state.data[index - 1],
+      user: this.state.data.find((item) => {
+        return item.id === index;
+      }),
     };
 
-    console.log(value);
     Dialog.confirm({
       content: '确认删除吗',
       onOk: () => {
         axios.post(`${host}/api/deleteMerber`, value).then((res) => {
           if (res.status === 200) {
-            Message.success('删除成功');
             this.getUserByProjectId(this.state.projectValue);
+            Message.success('删除成功');
           } else {
             Message.error('删除失败');
           }
@@ -140,6 +141,7 @@ export default class MemberList extends Component {
 
   getUserByProjectId = (value) => {
     axios.get(`${host}/api/getMerber?id=${value}`).then((res) => {
+      console.log(`res${res}`);
       this.setState({
         data: res.data.data,
       });

@@ -62,7 +62,7 @@ class UserController {
     const data = ctx.request.body;
 
     console.log(data);
-    if (data.projectValue === -1) {
+    if (data.projectValue === '-1') {
       ctx.body = {
         status: 400,
       };
