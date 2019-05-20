@@ -16,43 +16,35 @@ class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listSource: [
-        '努力写论文',
-        '认真锻炼',
-        '成功毕业',
-        '成为CEO',
-      ],
-      listTarget: [
-        '答辩通过',
-      ],
     };
   }
 
   renderSource = () => {
-    return this.state.listSource.map((item, index) =>
-      generateSource(item, this.sourceToTarget, index)
+    const data = this.props.data.filter((item) => {
+      return item.status === 0;
+    });
+    return data.map((item, index) =>
+      generateSource(item.name, this.sourceToTarget, index)
     );
   };
 
   renderTarget = () => {
-    return this.state.listTarget.map((item, index, self) => {
+    const data = this.props.data.filter((item) => {
+      return item.status === 1;
+    });
+    return data.map((item, index, self) => {
       if (self.length) {
-        return generateSource(item, null, index);
+        return generateSource(item.name, null, index);
       }
-      return generateSource(item, this.sourceToTarget, index);
+      return generateSource(item.name, this.sourceToTarget, index);
     });
   };
 
   sourceToTarget = (index) => {
-    this.setState((prevState) => {
-      return {
-        listTarget: [...prevState.listTarget, prevState.listSource[index]],
-        listSource: [].concat(
-          prevState.listSource.splice(0, index),
-          prevState.listSource.splice(index)
-        ),
-      };
+    const data = this.props.data.filter((item) => {
+      return item.status === 0;
     });
+    this.props.update(data[index]);
   };
 
   render() {

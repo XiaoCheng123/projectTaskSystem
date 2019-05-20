@@ -8,10 +8,13 @@ module.exports = (router) => {
     .get('/logout', userController.logout)
     .get('/projectInfo', projectController.getInfo)
     .get('/getMerber', projectController.getMerber)
+    .get('/getTask', projectController.getTask)
     .get('/getUser', userController.getUser)
+    .get('/updateTask', projectController.updateTask)
     .post('/login', userController.login)
     .post('/register', userController.register)
     .post('/addProject', projectController.addProject)
     .post('/addPerson', projectController.addPerson)
-    .post('/deleteMerber', projectController.deleteMerber);
+    .post('/deleteMerber', projectController.deleteMerber)
+    .post('/addTask', projectController.addTask);
 };

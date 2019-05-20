@@ -6,7 +6,7 @@ export default class CustomizeDropEffects extends Component {
   render() {
     return (
       <IceContainer>
-        <Container />
+        <Container data={this.props.data} update={this.props.update} />
       </IceContainer>
     );
   }

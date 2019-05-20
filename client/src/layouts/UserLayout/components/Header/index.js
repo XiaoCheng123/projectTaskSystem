@@ -17,7 +17,7 @@ export default () => {
               alt=""
               style={styles.internationalImg}
             />
-            中国站
+            小成
             <Icon type="arrow-up" size="xs" className="arrow-up-icon" />
             <Icon type="arrow-down" size="xs" className="arrow-down-icon" />
           </a>
@@ -29,7 +29,7 @@ export default () => {
             </li>
             <li style={styles.subNavMenu}>
               <a href="#" style={styles.subNavLink}>
-                日本サイト
+                小成
               </a>
             </li>
           </ul>

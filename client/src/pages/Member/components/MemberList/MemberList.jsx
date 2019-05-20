@@ -22,6 +22,7 @@ export default class MemberList extends Component {
     projectData: [],
     dataSource: [],
     projectValue: -1,
+    isOwner: true,
   };
 
   componentWillMount = () => {
@@ -141,10 +142,17 @@ export default class MemberList extends Component {
 
   getUserByProjectId = (value) => {
     axios.get(`${host}/api/getMerber?id=${value}`).then((res) => {
-      console.log(`res${res}`);
-      this.setState({
-        data: res.data.data,
-      });
+      if (res.data.data.length === 0) {
+        this.setState({
+          data: res.data.data,
+          isOwner: true,
+        });
+      } else {
+        this.setState({
+          data: res.data.data,
+          isOwner: res.data.data.isOwner,
+        });
+      }
       console.log(res);
     }).catch((err) => {
       console.log(err);
@@ -175,6 +183,7 @@ export default class MemberList extends Component {
 
   render() {
     const { data } = this.state;
+
     return (
       <IceContainer style={styles.container}>
         <Select
@@ -191,7 +200,7 @@ export default class MemberList extends Component {
           }
           )}
         </Select>
-        <Button style={{ margin: '10px 10px 10px 10px' }} onClick={this.onOpen} type="primary">
+        <Button disabled={this.state.isOwner} style={{ margin: '10px 10px 10px 10px' }} onClick={this.onOpen} type="primary">
           添加人员
         </Button>
         <Form style={{ width: '100%' }} {...formItemLayout} >

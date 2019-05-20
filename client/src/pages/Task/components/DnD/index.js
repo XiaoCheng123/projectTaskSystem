@@ -1,3 +1,3 @@
-import DnD from './DnD';
+import Dnd from './DnD';
 
-export default DnD;
+export default Dnd;

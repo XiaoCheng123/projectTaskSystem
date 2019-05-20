@@ -19,9 +19,6 @@ const boxSource = {
   endDrag(props, monitor, component) {
     if (monitor.didDrop()) {
       if (props.dropBack) {
-        component.setState({
-          show: false,
-        });
         props.dropBack(props.index);
       }
     }

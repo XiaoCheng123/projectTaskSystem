@@ -1,10 +1,16 @@
+/* eslint-disable no-return-await */
 const ProjectModel = require('../model/Project');
 const UserModel = require('../model/User');
+const TaskModel = require('../model/Task');
 
 class ProjectService {
   async searchUser(name) {
     const data = await ProjectModel.searchUser(name);
     return data[0];
+  }
+
+  async getProject(id) {
+    return await ProjectModel.searchProject(id);
   }
 
   async searchProject(projectIds) {
@@ -34,6 +40,29 @@ class ProjectService {
 
   async deleteMerber(data) {
     const res = await ProjectModel.deleteMerber(data);
+    return res;
+  }
+
+  async getTask(projectId) {
+    const projectValue = await ProjectModel.searchProject(projectId);
+    if (projectValue[0].taskIds === null) {
+      return [];
+    }
+    const idArray = projectValue[0].taskIds.split(',');
+    const data = await Promise.all(idArray.map(async (id) => {
+      const task = await TaskModel.searchTask(id);
+      return task[0];
+    }));
+    return data;
+  }
+
+  async updateTask(id) {
+    return await TaskModel.updateTask(id);
+  }
+
+  async addTask(data) {
+    const project = await ProjectModel.searchProject(data.projectValue);
+    const res = await ProjectModel.addTask(data, project[0]);
     return res;
   }
 }
