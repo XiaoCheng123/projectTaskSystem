@@ -14,7 +14,7 @@ class ProjectModel {
     await query('INSERT INTO project SET ?', { name: data.name, description: data.description, ownerId: user.id });
     const res = await query('select max(id) from project');
     console.log(res[0]['max(id)']);
-    const newProjectIds = user.projectIds !== null && user.projectIds !== 'null' ? `${user.projectIds},${res[0]['max(id)']}` : `${user.projectIds}${res[0]['max(id)']}`;
+    const newProjectIds = user.projectIds !== null && user.projectIds !== 'null' ? `${user.projectIds},${res[0]['max(id)']}` : `${res[0]['max(id)']}`;
     return await query(`UPDATE user SET projectIds = '${newProjectIds}' WHERE id = '${user.id}'`);
   }
 
@@ -24,7 +24,7 @@ class ProjectModel {
     const res = await query('select max(id) from task');
     console.log(res);
     console.log(project);
-    const newTaskIds = project.taskIds !== null && project.taskIds !== 'null' ? `${project.taskIds},${res[0]['max(id)']}` : `${project.taskIds}${res[0]['max(id)']}`;
+    const newTaskIds = project.taskIds !== null && project.taskIds !== 'null' ? `${project.taskIds},${res[0]['max(id)']}` : `${res[0]['max(id)']}`;
     return await query(`UPDATE project SET taskIds = '${newTaskIds}' WHERE id = '${project.id}'`);
   }
 

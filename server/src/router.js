@@ -16,5 +16,6 @@ module.exports = (router) => {
     .post('/addProject', projectController.addProject)
     .post('/addPerson', projectController.addPerson)
     .post('/deleteMerber', projectController.deleteMerber)
-    .post('/addTask', projectController.addTask);
+    .post('/addTask', projectController.addTask)
+    .post('/updateUser', userController.updateUser);
 };

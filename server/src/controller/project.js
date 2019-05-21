@@ -45,19 +45,22 @@ class UserController {
     if (ctx.request.query.id !== '-1') {
       const userData = await userService.profile(ctx.session.user);
       const projectData = await projectService.getProject(ctx.request.query.id);
-      if (userData.data[0].id === projectData[0].ownerId) {
-        merber.isOwner = false;
+      if (userData.data[0].id !== projectData[0].ownerId) {
+        ctx.body = {
+          status: 203,
+          data: merber || [],
+        };
+      } else if (merber !== undefined && merber !== null) {
+        ctx.body = {
+          status: 200,
+          data: merber,
+        };
       } else {
-        merber.isOwner = true;
+        ctx.body = {
+          status: 203,
+          data: [],
+        };
       }
-    } else {
-      merber.isOwner = true;
-    }
-    if (merber !== undefined && merber !== null) {
-      ctx.body = {
-        status: 200,
-        data: merber,
-      };
     } else {
       ctx.body = {
         status: 203,
@@ -76,10 +79,19 @@ class UserController {
       };
     } else {
       const res = await projectService.getTask(data.id);
-      ctx.body = {
-        status: 200,
-        data: res,
-      };
+      const userData = await userService.profile(ctx.session.user);
+      const projectData = await projectService.getProject(ctx.request.query.id);
+      if (userData.data[0].id !== projectData[0].ownerId) {
+        ctx.body = {
+          status: 203,
+          data: res,
+        };
+      } else {
+        ctx.body = {
+          status: 200,
+          data: res,
+        };
+      }
     }
   }
 

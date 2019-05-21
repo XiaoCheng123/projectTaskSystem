@@ -7,6 +7,10 @@ class UserModel {
     // return await mysql.query('select * from user');
   }
 
+  async hasId(id) {
+    return await query(`SELECT * FROM user where id = '${id}'`);
+  }
+
   async login(name) {
     return await query(`SELECT * FROM user where name = '${name}'`);
   }

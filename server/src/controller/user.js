@@ -76,6 +76,16 @@ class UserController {
       data: res,
     };
   }
+
+  async updateUser(ctx) {
+    const data = ctx.request.body;
+
+    const user = await userService.hasId(data.id);
+
+    ctx.body = {
+      status: 200,
+    };
+  }
 }
 
 module.exports = new UserController();

@@ -142,7 +142,7 @@ export default class MemberList extends Component {
 
   getUserByProjectId = (value) => {
     axios.get(`${host}/api/getMerber?id=${value}`).then((res) => {
-      if (res.data.data.length === 0) {
+      if (res.data.status !== 200) {
         this.setState({
           data: res.data.data,
           isOwner: true,
@@ -150,7 +150,7 @@ export default class MemberList extends Component {
       } else {
         this.setState({
           data: res.data.data,
-          isOwner: res.data.data.isOwner,
+          isOwner: false,
         });
       }
       console.log(res);

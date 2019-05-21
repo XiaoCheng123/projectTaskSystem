@@ -39,6 +39,7 @@ export default class Task extends Component {
       projectValue: -1,
       visible: false,
       data: [],
+      isOwner: true,
     };
   }
 
@@ -79,9 +80,17 @@ export default class Task extends Component {
 
   getTaskByProjectId = (value) => {
     axios.get(`${host}/api/getTask?id=${value}`).then((res) => {
-      this.setState({
-        data: res.data.data,
-      });
+      if (res.data.status !== 200) {
+        this.setState({
+          data: res.data.data,
+          isOwner: true,
+        });
+      } else {
+        this.setState({
+          data: res.data.data,
+          isOwner: false,
+        });
+      }
     }).catch((err) => {
       console.log(err);
     });
@@ -144,7 +153,7 @@ export default class Task extends Component {
           }
           )}
           </Select>
-          <Button style={{ margin: '10px 10px 10px 10px' }} onClick={this.onOpen} type="primary">
+          <Button disabled={this.state.isOwner} style={{ margin: '10px 10px 10px 10px' }} onClick={this.onOpen} type="primary">
           添加任务
           </Button>
           <Form style={{ width: '100%' }} {...formItemLayout} >

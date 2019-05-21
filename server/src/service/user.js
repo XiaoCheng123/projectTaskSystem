@@ -11,6 +11,11 @@ class UserService {
     return { data };
   }
 
+  async hasId(id) {
+    const data = await UserModel.hasId(id);
+    return data;
+  }
+
   async login(name) {
     const data = await UserModel.hasName(name);
     return data;
