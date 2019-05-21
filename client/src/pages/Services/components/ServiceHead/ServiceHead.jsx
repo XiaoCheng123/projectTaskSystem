@@ -37,9 +37,9 @@ export default class ServiceHead extends Component {
     }
     axios.post(`${host}/api/addProject`, values).then((res) => {
       if (res.data.status === 200) {
+        this.props.update();
         Message.success('新建成功');
       } else {
-        this.props.updateParent();
         Message.success('新建失败');
       }
       console.log(res.data);

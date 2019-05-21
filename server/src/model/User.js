@@ -11,6 +11,10 @@ class UserModel {
     return await query(`SELECT * FROM user where id = '${id}'`);
   }
 
+  async updateUser(user) {
+    return await query(`UPDATE user SET name = '${user.name}', email = '${user.email}', passwd = '${user.passwd}'   WHERE id = '${user.id}'`);
+  }
+
   async login(name) {
     return await query(`SELECT * FROM user where name = '${name}'`);
   }

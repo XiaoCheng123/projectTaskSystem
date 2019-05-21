@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Grid } from '@alifd/next';
 import IceContainer from '@icedesign/container';
-import axios from 'axios';
-import host from '../../../../../public/config';
 
 const { Row, Col } = Grid;
 
@@ -16,28 +14,13 @@ export default class ServiceCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      projectData: [],
     };
   }
-
-  componentWillMount = () => {
-    this.getData();
-  }
-
-  getData = () => {
-    axios.get(`${host}/api/projectInfo`).then((res) => {
-      this.setState({
-        projectData: res.data.data ? res.data.data : [],
-      });
-    }).catch((err) => {
-      console.log(err);
-    });
-  };
 
   render() {
     return (
       <Row wrap gutter="20">
-        {this.state.projectData.map((item, index) => {
+        {this.props.data.map((item, index) => {
           return (
             <Col l="8" key={index}>
               <IceContainer style={styles.container}>

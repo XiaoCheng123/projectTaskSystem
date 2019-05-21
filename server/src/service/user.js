@@ -16,6 +16,11 @@ class UserService {
     return data;
   }
 
+  async updateUser(user) {
+    const res = await UserModel.updateUser(user);
+    return res;
+  }
+
   async login(name) {
     const data = await UserModel.hasName(name);
     return data;

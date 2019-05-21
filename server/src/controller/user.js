@@ -81,6 +81,17 @@ class UserController {
     const data = ctx.request.body;
 
     const user = await userService.hasId(data.id);
+    console.log(data);
+    console.log(user[0]);
+
+    const newUser = {
+      id: user[0].id,
+      name: user[0].name,
+      email: user[0].email,
+      passwd: user[0].passwd,
+    };
+
+    // const res = await userService.updateUser(newUser);
 
     ctx.body = {
       status: 200,
