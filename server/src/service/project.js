@@ -2,6 +2,7 @@
 const ProjectModel = require('../model/Project');
 const UserModel = require('../model/User');
 const TaskModel = require('../model/Task');
+const NoticeModel = require('../model/Notice');
 
 class ProjectService {
   async searchUser(name) {
@@ -43,9 +44,22 @@ class ProjectService {
     return res;
   }
 
+  async getNotice(userId) {
+    const user = await UserModel.hasId(userId);
+    if (user[0].noticeIds === null || user[0].noticeIds === 'null') {
+      return [];
+    }
+    const idArray = user[0].noticeIds.split(',');
+    const data = await Promise.all(idArray.map(async (id) => {
+      const notice = await NoticeModel.searchNotice(id);
+      return notice[0];
+    }));
+    return data;
+  }
+
   async getTask(projectId) {
     const projectValue = await ProjectModel.searchProject(projectId);
-    if (projectValue[0].taskIds === null) {
+    if (projectValue[0].taskIds === null || projectValue[0].noticeIds === 'null') {
       return [];
     }
     const idArray = projectValue[0].taskIds.split(',');
